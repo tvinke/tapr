@@ -1,0 +1,25 @@
+allprojects {
+  apply plugin:"eclipse"
+  apply plugin:"idea"
+  
+  group = "org.tapr"
+  version = "0.0.1"
+}
+
+subprojects {
+  apply plugin: "groovy"
+    
+  compileJava.options.encoding = 'UTF-8'
+  compileTestJava.options.encoding = 'UTF-8'
+  compileGroovy.options.encoding = 'UTF-8'
+  compileTestGroovy.options.encoding = 'UTF-8'
+
+  repositories {
+    jcenter()
+  }
+
+  dependencies {
+	compile "org.codehaus.groovy:groovy:2.4.5"
+    testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+  }
+}

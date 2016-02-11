@@ -1,0 +1,3 @@
+include 'tapr-core'
+
+rootProject.name = 'tapr'
