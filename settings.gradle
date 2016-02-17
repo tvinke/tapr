@@ -1,3 +1,4 @@
 include 'tapr-core'
+include 'tapr-spock'
 
 rootProject.name = 'tapr'

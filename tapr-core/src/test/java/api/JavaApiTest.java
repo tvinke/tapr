@@ -1,10 +1,12 @@
 package api;
+
 import org.junit.Test;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
+
 import org.tapr.TapeFactory;
 import org.tapr.TapeRecording;
 import org.tapr.TapeRecording.TapedMethod;
-
-import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class JavaApiTest {
     	
     	JavaCat cat2 = new JavaCat();
     	cat2.setName("Pebbles");
-    	assertEquals("cat should be named Pebbles", "Pebbles", cat2.getName());
+    	assertThat(cat2.getName(), is("Pebbles"));
     	
     	// given
     	JavaCat cat = TapeFactory.create(JavaCat.class, new JavaCat());
@@ -34,18 +36,18 @@ public class JavaApiTest {
     	
     	// start recording
     	recording.start();
-    	assertTrue("we are recording", recording.isRecording());
+    	assertThat("we are recording", recording.isRecording(), is(true));
     	
     	// invoke a method
     	cat.getName();
 		cat.setName("Giggles");
 		cat.setAge(2);
 		String greeting = cat.greeting();
-		assertEquals("Hello, Giggles!", greeting);
+		assertThat(greeting, is("Hello, Giggles!"));
     	
     	// stop recording
     	recording.stop();
-    	assertFalse("we have stopped recording", recording.isRecording());
+    	assertThat("we stopped recording", recording.isRecording(), is(false));
     	cat.setAge(3); // will not be recorded
     	
     	List<TapedMethod> methods = recording.getMethods();
@@ -53,11 +55,12 @@ public class JavaApiTest {
     		System.out.println(method);
     	}
     	
-    	assertEquals(4, methods.size());
+    	assertThat(methods.size(), is(4));
     	// ugly String comparison here should be removed as soon as possible ;-)
-    	assertEquals("TapedMethod [method=public java.lang.String api.JavaCat.getName(), arguments=[], result=null]", methods.get(0).toString());
-    	assertEquals("TapedMethod [method=public void api.JavaCat.setName(java.lang.String), arguments=[Giggles], result=null]", methods.get(1).toString());
-    	assertEquals("TapedMethod [method=public void api.JavaCat.setAge(int), arguments=[2], result=null]", methods.get(2).toString());
-    	assertEquals("TapedMethod [method=public java.lang.String api.JavaCat.greeting(), arguments=[], result=Hello, Giggles!]", methods.get(3).toString());
+    	assertThat(methods.get(0).toString(), is("TapedMethod [method=public java.lang.String api.JavaCat.getName(), arguments=[], result=null]"));
+    	assertThat(methods.get(1).toString(), is("TapedMethod [method=public void api.JavaCat.setName(java.lang.String), arguments=[Giggles], result=null]"));
+    	assertThat(methods.get(2).toString(), is("TapedMethod [method=public void api.JavaCat.setAge(int), arguments=[2], result=null]"));
+    	assertThat(methods.get(3).toString(), is("TapedMethod [method=public java.lang.String api.JavaCat.greeting(), arguments=[], result=Hello, Giggles!]"));
+    	
     }
 }

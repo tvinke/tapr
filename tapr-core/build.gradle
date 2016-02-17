@@ -8,5 +8,4 @@ ext.displayName = "Tapr - Core Module"
 dependencies {
 	compile 'javassist:javassist:3.12.1.GA'
     compile 'org.slf4j:slf4j-api:1.7.14'
-    testCompile 'junit:junit:4.12'
 }
