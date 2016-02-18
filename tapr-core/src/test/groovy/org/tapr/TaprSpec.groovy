@@ -1,8 +1,10 @@
 package org.tapr
 
+import org.tapr.internal.TapeRecordingImpl;
+
 import spock.lang.Specification
 import groovy.transform.ToString
-import org.tapr.TapeFactory
+import static org.tapr.Tapr.*
 
 /**
  * @author Ted Vinke
@@ -13,8 +15,8 @@ class TaprSpec extends Specification {
 	def "create and record some methods"() {
 		
 		given:
-		Cat cat = TapeFactory.create(Cat.class, new Cat())
-		TapeRecording recording = TapeFactory.getRecording(cat)
+		Cat cat = tape(Cat.class, new Cat())
+		TapeRecordingImpl recording = getRecording(cat)
 		
 		when:
 		recording.start()
