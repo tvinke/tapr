@@ -57,10 +57,10 @@ public class JavaApiTest {
     	
     	assertThat(methods.size(), is(4));
     	// ugly String comparison here should be removed as soon as possible ;-)
-    	assertThat(methods.get(0).toString(), is("TapedMethod [method=public java.lang.String api.JavaCat.getName(), arguments=[], returnedObject=Pebbles]"));
-    	assertThat(methods.get(1).toString(), is("TapedMethod [method=public void api.JavaCat.setName(java.lang.String), arguments=[Giggles], returnedObject=null]"));
-    	assertThat(methods.get(2).toString(), is("TapedMethod [method=public void api.JavaCat.setAge(int), arguments=[2], returnedObject=null]"));
-    	assertThat(methods.get(3).toString(), is("TapedMethod [method=public java.lang.String api.JavaCat.greeting(), arguments=[], returnedObject=Hello, Giggles!]"));
+    	assertThat(methods.get(0).toString(), is("#1 [method=public java.lang.String api.JavaCat.getName(), arguments=[], returnedObject=Pebbles]"));
+    	assertThat(methods.get(1).toString(), is("#2 [method=public void api.JavaCat.setName(java.lang.String), arguments=[Giggles], returnedObject=null]"));
+    	assertThat(methods.get(2).toString(), is("#3 [method=public void api.JavaCat.setAge(int), arguments=[2], returnedObject=null]"));
+    	assertThat(methods.get(3).toString(), is("#4 [method=public java.lang.String api.JavaCat.greeting(), arguments=[], returnedObject=Hello, Giggles!]"));
     	
     }
 }

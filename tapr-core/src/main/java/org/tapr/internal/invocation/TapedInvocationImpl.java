@@ -3,7 +3,6 @@ package org.tapr.internal.invocation;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.List;
 
 import org.tapr.invocation.TapedInvocation;
 import org.tapr.invocation.TapedMethod;
@@ -26,8 +25,8 @@ public class TapedInvocationImpl implements TapedInvocation, Serializable {
 
 	public TapedInvocationImpl(Object tapedObject, TapedMethod tapedMethod,
 			Object[] args, Object returnedObject, int sequenceNumber) {
-		this.method = tapedMethod;
 		this.tapedObject = tapedObject;
+		this.method = tapedMethod;
 		this.arguments = args;
 		this.sequenceNumber = sequenceNumber;
 		this.returnedObject = returnedObject;
@@ -53,10 +52,12 @@ public class TapedInvocationImpl implements TapedInvocation, Serializable {
 		return method.getReturnType();
 	}
 
+	@Override
 	public int getSequenceNumber() {
 		return sequenceNumber;
 	}
 
+	@Override
 	public boolean equals(Object o) {
 		if (o == null || !o.getClass().equals(this.getClass())) {
 			return false;
@@ -77,11 +78,13 @@ public class TapedInvocationImpl implements TapedInvocation, Serializable {
 	public int hashCode() {
 		return 1;
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("TapedMethod [method=");
+		builder.append("#");
+		builder.append(sequenceNumber);
+		builder.append(" [method=");
 		builder.append(method.getJavaMethod());
 		builder.append(", arguments=");
 		builder.append(Arrays.asList(arguments));

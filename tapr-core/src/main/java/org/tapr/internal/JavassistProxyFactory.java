@@ -14,7 +14,7 @@ public class JavassistProxyFactory implements TapeProxyFactory {
 
 	@Override
 	public <T> T create(Class<T> classToTape, final T instance,
-			TapeSettings settings) throws Exception {
+			final TapeSettings settings) throws Exception {
 		ProxyFactory factory = new ProxyFactory();
 		if (classToTape.isInterface()) {
 			factory.setInterfaces(new Class<?>[] { classToTape, Tape.class });
@@ -24,7 +24,9 @@ public class JavassistProxyFactory implements TapeProxyFactory {
 		}
 
 		MethodHandler handler = new MethodHandler() {
-			private TapeRecordingImpl recording = new TapeRecordingImpl();
+			private TapeRecordingImpl recording = new TapeRecordingImpl(
+					instance, settings);
+
 			private final Method getRecording = Tape.class.getMethod(
 					"getRecording", new Class<?>[0]);
 

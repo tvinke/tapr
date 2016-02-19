@@ -1,7 +1,6 @@
 package org.tapr.invocation;
 
 import java.lang.reflect.Method;
-import java.util.List;
 
 /**
  * Method call on a taped object.
@@ -31,10 +30,18 @@ public interface TapedInvocation {
 	 * @return the result
 	 */
 	Object getReturnedObject();
-	
+
 	/**
 	 * Returns the type of the method.
+	 * 
 	 * @return type
 	 */
 	Class<?> getReturnType();
+
+	/**
+	 * Returns the globally unique sequence of this invocation.
+	 * 
+	 * @return a positive number
+	 */
+	int getSequenceNumber();
 }

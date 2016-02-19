@@ -32,6 +32,27 @@ public class Tapr {
 	 * Creates a taped proxy-class for specified class or interface and
 	 * instance.
 	 * 
+	 * @param name
+	 *            The name of the taped object, for identification in e.g.
+	 *            logging
+	 * @param classToTape
+	 *            Class or interface to tape
+	 * @param instance
+	 *            Any concrete instance of specified class
+	 * @return taped proxy class
+	 * @throws Exception
+	 *             in case anything fails to work with us ;-)
+	 */
+	public static <T> T tape(String name, Class<T> classToTape, final T instance)
+			throws Exception {
+		return proxyFactory.create(classToTape, instance,
+				withSettings().name(name));
+	}
+
+	/**
+	 * Creates a taped proxy-class for specified class or interface and
+	 * instance.
+	 * 
 	 * @param classToTape
 	 *            Class or interface to tape
 	 * @param instance

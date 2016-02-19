@@ -11,6 +11,13 @@ import org.tapr.invocation.TapedInvocation;
  *
  */
 public interface TapeRecording {
+	
+	/**
+	 * Gets the name of the taped object.
+	 * 
+	 * @return the name
+	 */
+	public String getName();
 
 	/**
 	 * Starts recording.
@@ -18,12 +25,12 @@ public interface TapeRecording {
 	 * <p>
 	 * Method calls are recorded.
 	 */
-	public abstract void start();
+	public void start();
 
 	/**
 	 * Clears any earlier recording and restarts recording.
 	 */
-	public abstract void restart();
+	public void restart();
 
 	/**
 	 * Stops recording.
@@ -31,7 +38,7 @@ public interface TapeRecording {
 	 * <p>
 	 * Method calls are no longer recorded.
 	 */
-	public abstract void stop();
+	public void stop();
 
 	/**
 	 * Checks whether or not tape is recording.

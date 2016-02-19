@@ -4,18 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.tapr.TapeSettings;
-import org.tapr.listeners.InvocationListener;
 import org.tapr.internal.debugging.VerboseTapeInvocationLogger;
+import org.tapr.listeners.InvocationListener;
 
 public class TapeSettingsImpl<T> implements TapeSettings {
 
 	private static final long serialVersionUID = -2861156147776921893L;
 
+	protected String name;
 	protected List<InvocationListener> invocationListeners = new ArrayList<InvocationListener>();
 
-	/* (non-Javadoc)
-	 * @see org.tapr.TapeSettings#verboseLogging()
-	 */
+	@Override
+	public TapeSettings name(String name) {
+		this.name = name;
+		return this;
+	}
+
+	@Override
+	public String getName() {
+		return this.name;
+	}
+
 	@Override
 	public TapeSettings verboseLogging() {
 		if (!invocationListenersContainsType(VerboseTapeInvocationLogger.class)) {

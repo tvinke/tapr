@@ -1,0 +1,8 @@
+ext.displayName = "Tapr - Spock Module"
+
+dependencies {
+	compile project(':tapr-core')
+	
+	compile 'org.codehaus.groovy:groovy:2.4.5'
+	compile 'org.codehaus.groovy:groovy-json:2.4.5'
+}
